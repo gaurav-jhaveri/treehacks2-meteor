@@ -37,12 +37,10 @@ if (Meteor.isClient) {
             var links = {};
             var arr = $.parseJSON(results.content);
             $(arr).each(function() {
-              console.log(this);
               data[0].data.push({x: this.bucket, y: this.sentiment, r: 2})
               if (!(this.bucket in links)) {
                 links[this.bucket] = {title: this.title, link: this.link};
               }
-              console.log(links[this.bucket]);
             });
 
             var ctx = document.getElementById("myBubbleChart").getContext("2d");
