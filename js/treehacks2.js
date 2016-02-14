@@ -28,7 +28,7 @@ if (Meteor.isClient) {
 
             var data = [
               {
-                label: 'Perspective',
+                label: 'Sentiment',
                 strokeColor: 'rgba(75, 180, 75, 0.3)',
                 data: []
               }
@@ -37,7 +37,7 @@ if (Meteor.isClient) {
             var links = {};
             var arr = $.parseJSON(results.content);
             $(arr).each(function() {
-              data[0].data.push({x: this.bucket, y: 0, r: 2})
+              data[0].data.push({x: (this.bucket - 10), y: 0, r: 2})
               if (!(this.bucket in links)) {
                 links[this.bucket] = {title: this.title, link: this.link};
               }
