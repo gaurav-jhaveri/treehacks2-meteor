@@ -49,7 +49,7 @@ if (Meteor.isClient) {
               showTooltips: true,
               scaleShowHorizontalLines: true,
               scaleShowLabels: true,
-              scaleBeginAtZero: true,
+              scaleBeginAtZero: false,
               datasetStroke: false
               });
 
