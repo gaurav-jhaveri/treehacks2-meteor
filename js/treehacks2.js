@@ -57,7 +57,7 @@ if (Meteor.isClient) {
             var activePoints = myBubbleChart.getPointsAtEvent(evt);
             var firstPoint = activePoints[0];
             if (firstPoint !== undefined)
-              window.open(links[data[0].data[firstPoint.arg].x].link, '_blank');
+              window.open(links[data[0].data[firstPoint.arg].x + 10].link, '_blank');
             // use _datasetIndex and _index from each element of the activePoints array
             };
 
