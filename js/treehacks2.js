@@ -29,7 +29,7 @@ if (Meteor.isClient) {
             var data = [
               {
                 label: 'Perspective',
-                strokeColor: 'rgba(77, 180, 73, 0.3)',
+                strokeColor: 'rgba(75, 180, 75, 0.3)',
                 data: []
               }
             ];
