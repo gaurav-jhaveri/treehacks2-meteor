@@ -2,7 +2,7 @@ if (Meteor.isServer) {
     Meteor.methods({
         checkSentiment: function (searchTerm) {
             this.unblock();
-            return Meteor.http.call("GET", "https://agile-escarpment-65178.herokuapp.com/newsbiasapp/getData?q=" + searchTerm);
+            return Meteor.http.call("GET", "https://guarded-fortress-22776.herokuapp.com/newsbiasapp/getData?q=" + searchTerm);
         }
     });
 }
@@ -23,7 +23,9 @@ if (Meteor.isClient) {
 
             Chart.defaults.global.responsive = true;
             Chart.defaults.global.animation = false;
+
             $(function(){
+
             var data = [
               {
                 label: 'Perspective',
@@ -32,9 +34,15 @@ if (Meteor.isClient) {
               }
             ];
 
+            var links = {};
             var arr = $.parseJSON(results.content);
             $(arr).each(function() {
-              data[0].data.push({x: this.bucket, y: 0, r: 2})
+              console.log(this);
+              data[0].data.push({x: this.bucket, y: this.sentiment, r: 2})
+              if (!(this.bucket in links)) {
+                links[this.bucket] = {title: this.title, link: this.link};
+              }
+              console.log(links[this.bucket]);
             });
 
             var ctx = document.getElementById("myBubbleChart").getContext("2d");
@@ -46,6 +54,15 @@ if (Meteor.isClient) {
               scaleBeginAtZero: true,
               datasetStroke: false
               });
+
+            document.getElementById("myBubbleChart").onclick = function(evt){
+            var activePoints = myBubbleChart.getPointsAtEvent(evt);
+            var firstPoint = activePoints[0];
+            if (firstPoint !== undefined)
+              window.open(links[data[0].data[firstPoint.arg].x].link, '_blank');
+            // use _datasetIndex and _index from each element of the activePoints array
+            };
+
             });
 
 
